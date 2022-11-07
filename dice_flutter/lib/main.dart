@@ -1,3 +1,5 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'dart:math';
 
 import 'package:flutter/material.dart';
@@ -41,7 +43,7 @@ class _DicePageState extends State<DicePage> {
                 child: Image.asset('images/dice$leftDiceNumber.png'),
                 onPressed: () {
                   setState(() {
-                    leftDiceNumber = Random().nextInt(6) + 1;
+                    change_dice();
                   });
                 })),
         Expanded(
@@ -49,10 +51,15 @@ class _DicePageState extends State<DicePage> {
                 child: Image.asset('images/dice$rightDiceNumber.png'),
                 onPressed: () {
                   setState(() {
-                    rightDiceNumber = Random().nextInt(6) + 1;
+                    change_dice();
                   });
                 })),
       ],
     ));
+  }
+
+  void change_dice() {
+    leftDiceNumber = Random().nextInt(6) + 1;
+    rightDiceNumber = Random().nextInt(6) + 1;
   }
 }
