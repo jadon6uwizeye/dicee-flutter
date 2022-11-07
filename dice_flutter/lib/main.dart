@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 void main() {
@@ -12,25 +14,24 @@ void main() {
         ),
         body: const DicePage(),
         // add a button to roll the dice
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            // roll the dice
-          },
-          child: const Icon(Icons.add),
-          backgroundColor: Colors.red,
-        ),
       ),
     ),
   );
 }
 
-class DicePage extends StatelessWidget {
+class DicePage extends StatefulWidget {
   const DicePage({super.key});
 
   @override
+  State<DicePage> createState() => _DicePageState();
+}
+
+class _DicePageState extends State<DicePage> {
+  var leftDiceNumber = 1;
+  var rightDiceNumber = 5;
+
+  @override
   Widget build(BuildContext context) {
-    var leftDiceNumber = 1;
-    var rightDiceNumber = 1;
     return Center(
         child: Row(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -38,11 +39,19 @@ class DicePage extends StatelessWidget {
         Expanded(
             child: TextButton(
                 child: Image.asset('images/dice$leftDiceNumber.png'),
-                onPressed: () {})),
+                onPressed: () {
+                  setState(() {
+                    leftDiceNumber = Random().nextInt(6) + 1;
+                  });
+                })),
         Expanded(
             child: TextButton(
                 child: Image.asset('images/dice$rightDiceNumber.png'),
-                onPressed: () {})),
+                onPressed: () {
+                  setState(() {
+                    rightDiceNumber = Random().nextInt(6) + 1;
+                  });
+                })),
       ],
     ));
   }
