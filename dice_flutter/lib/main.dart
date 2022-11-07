@@ -3,10 +3,11 @@ import 'package:flutter/material.dart';
 void main() {
   return runApp(
     MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
         backgroundColor: Colors.red,
         appBar: AppBar(
-          title: const Text('Dicee'),
+          title: const Center(child: Text('Dicee')),
           backgroundColor: Colors.red,
         ),
         body: const DicePage(),
@@ -28,6 +29,21 @@ class DicePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    var leftDiceNumber = 1;
+    var rightDiceNumber = 1;
+    return Center(
+        child: Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Expanded(
+            child: TextButton(
+                child: Image.asset('images/dice$leftDiceNumber.png'),
+                onPressed: () {})),
+        Expanded(
+            child: TextButton(
+                child: Image.asset('images/dice$rightDiceNumber.png'),
+                onPressed: () {})),
+      ],
+    ));
   }
 }
